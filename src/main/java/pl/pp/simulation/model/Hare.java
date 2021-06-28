@@ -1,4 +1,7 @@
-package pl.pp.simulation;
+package pl.pp.simulation.model;
+
+import pl.pp.simulation.utils.ProgramData;
+import pl.pp.simulation.utils.Utils;
 
 import java.util.*;
 import java.awt.*;
@@ -6,9 +9,9 @@ import java.awt.geom.Ellipse2D;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static pl.pp.simulation.ProgramData.hareList;
-import static pl.pp.simulation.Utils.getDistance;
-import static pl.pp.simulation.Utils.multiple;
+import static pl.pp.simulation.utils.ProgramData.hareList;
+import static pl.pp.simulation.utils.Utils.getDistance;
+import static pl.pp.simulation.utils.Utils.multiple;
 
 public class Hare {
     public static int size = 10;
@@ -96,7 +99,7 @@ public class Hare {
 
     private void adjustSpeedToNearesHare() {
         Hare nearestHare = Collections.min(getVisibleHares(), Comparator.comparingDouble((Hare hare) -> getDistance(this, hare)));
-        double distance = getDistance(nearestHare, this);
+        double distance = Utils.getDistance(nearestHare, this);
 
         if (distance < size) {
             multiple(this, nearestHare);

@@ -1,10 +1,14 @@
 package pl.pp.simulation;
 
+import pl.pp.simulation.model.Grass;
+import pl.pp.simulation.model.Hare;
+import pl.pp.simulation.utils.ProgramData;
+
 import javax.swing.*;
 import java.awt.*;
 
-import static pl.pp.simulation.ProgramData.grassList;
-import static pl.pp.simulation.ProgramData.hareList;
+import static pl.pp.simulation.utils.ProgramData.grassList;
+import static pl.pp.simulation.utils.ProgramData.hareList;
 
 public class MyComponent extends JComponent {
 
