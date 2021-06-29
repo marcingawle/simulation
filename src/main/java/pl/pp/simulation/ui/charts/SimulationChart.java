@@ -1,4 +1,4 @@
-package pl.pp.simulation;
+package pl.pp.simulation.ui.charts;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -10,6 +10,7 @@ import javax.swing.*;
 
 public class SimulationChart extends JFrame {
 
+    public static SimulationChart simulationChart = new SimulationChart();
     private XYSeries hareSeries;
     private XYSeries grassSeries;
     private XYSeries foxSeries;
@@ -61,3 +62,4 @@ public class SimulationChart extends JFrame {
         return foxSeries;
     }
 }
+

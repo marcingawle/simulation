@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import static pl.pp.simulation.utils.ProgramData.*;
-import static pl.pp.simulation.utils.Components.*;
+import static pl.pp.simulation.ui.panel.ScrollPanel.textArea;
 import static pl.pp.simulation.utils.Utils.getDistance;
 import static pl.pp.simulation.utils.Utils.multipleFoxes;
 

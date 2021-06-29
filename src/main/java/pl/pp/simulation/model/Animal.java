@@ -1,6 +1,7 @@
 package pl.pp.simulation.model;
 
 import pl.pp.simulation.utils.ProgramData;
+import pl.pp.simulation.utils.Utils;
 
 import java.util.List;
 import java.util.Random;
@@ -8,7 +9,6 @@ import java.util.stream.Collectors;
 
 import static pl.pp.simulation.utils.ProgramData.*;
 import static pl.pp.simulation.utils.Utils.getDistance;
-
 
 public abstract class Animal extends Organism {
     public static int size = 10;
@@ -45,7 +45,7 @@ public abstract class Animal extends Organism {
         speed = 0;
         speedAngle = random.nextInt(360);
         desireForParenthood = 0;
-        hunger = minimumHunger * 2;
+        hunger = minimumHunger*2;
     }
 
     public abstract void init();
@@ -108,7 +108,7 @@ public abstract class Animal extends Organism {
 
 
     protected void adjustSpeedTo(Organism organism) {
-        double distance = getDistance(organism, this);
+        double distance = Utils.getDistance(organism, this);
 
         speed++;
         speedAngle = getAngleTo(organism);
@@ -162,10 +162,11 @@ public abstract class Animal extends Organism {
     }
 
     private double deltaX() {
-        return speed * Math.cos(Math.toRadians(speedAngle));
+        return speed*Math.cos(Math.toRadians(speedAngle));
     }
 
     private double deltaY() {
-        return speed * Math.sin(Math.toRadians(speedAngle));
+        return speed*Math.sin(Math.toRadians(speedAngle));
     }
 }
+

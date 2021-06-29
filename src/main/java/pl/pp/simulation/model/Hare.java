@@ -1,17 +1,17 @@
 package pl.pp.simulation.model;
 
-import pl.pp.simulation.utils.ProgramData;
 import pl.pp.simulation.utils.Utils;
 
-import java.util.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Collections;
+import java.util.Comparator;
 
-import static pl.pp.simulation.utils.ProgramData.*;
-import static pl.pp.simulation.utils.Components.*;
-import static pl.pp.simulation.utils.Utils.*;
+import static pl.pp.simulation.ui.panel.ScrollPanel.textArea;
+import static pl.pp.simulation.utils.ProgramData.deathHareList;
+import static pl.pp.simulation.utils.ProgramData.grassList;
+import static pl.pp.simulation.utils.Utils.getDistance;
+import static pl.pp.simulation.utils.Utils.multipleHares;
 
 public class Hare extends Animal {
 
@@ -47,7 +47,7 @@ public class Hare extends Animal {
 
 
     public void changeSpeed() {
-        if (getVisibleFoxes().size() > 0){
+        if (getVisibleFoxes().size() > 0) {
             Fox nearestFox = Collections.min(getVisibleFoxes(), Comparator.comparingDouble((Fox f) -> getDistance(this, f)));
             runAwayFrom(nearestFox);
         } else if (hunger >= minimumHunger && getVisibleGrass().size() > 0) {

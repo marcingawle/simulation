@@ -6,7 +6,7 @@ import pl.pp.simulation.model.Organism;
 
 import static pl.pp.simulation.utils.ProgramData.newFoxList;
 import static pl.pp.simulation.utils.ProgramData.newHareList;
-import static pl.pp.simulation.utils.Components.*;
+import static pl.pp.simulation.ui.panel.ScrollPanel.textArea;
 
 public class Utils {
     public static double getDistance(Organism organism1, Organism organism2) {

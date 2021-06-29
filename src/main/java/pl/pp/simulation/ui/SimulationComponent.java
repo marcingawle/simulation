@@ -1,4 +1,4 @@
-package pl.pp.simulation;
+package pl.pp.simulation.ui;
 
 import pl.pp.simulation.model.Fox;
 import pl.pp.simulation.model.Grass;
@@ -10,10 +10,16 @@ import java.awt.*;
 
 import static pl.pp.simulation.utils.ProgramData.*;
 
-public class MyComponent extends JComponent {
+public class SimulationComponent extends JComponent {
 
 
-    public MyComponent() {
+    private static final SimulationComponent SIMULATION_COMPONENT = new SimulationComponent();
+
+    public static SimulationComponent getInstance() {
+        return SIMULATION_COMPONENT;
+    }
+
+    private SimulationComponent() {
 
     }
 
