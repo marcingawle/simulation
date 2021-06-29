@@ -4,8 +4,8 @@ import pl.pp.simulation.model.Fox;
 import pl.pp.simulation.model.Hare;
 import pl.pp.simulation.model.Organism;
 
-import static pl.pp.simulation.utils.ProgramData.newFoxList;
-import static pl.pp.simulation.utils.ProgramData.newHareList;
+import static pl.pp.simulation.model.Foxes.newFoxList;
+import static pl.pp.simulation.model.Hares.newHareList;
 import static pl.pp.simulation.ui.panel.ScrollPanel.textArea;
 
 public class Utils {

@@ -1,12 +1,7 @@
 package pl.pp.simulation.ui;
 
-import pl.pp.simulation.Step;
-import pl.pp.simulation.model.Fox;
-import pl.pp.simulation.model.Grass;
-import pl.pp.simulation.model.Hare;
 import pl.pp.simulation.ui.panel.ControlPanel;
 import pl.pp.simulation.ui.panel.ScrollPanel;
-import pl.pp.simulation.utils.ParameterModel;
 import pl.pp.simulation.utils.ProgramData;
 
 import javax.swing.*;

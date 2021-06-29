@@ -20,6 +20,6 @@ public class ScrollPanel extends JScrollPane {
         textArea = new JTextArea();
         textArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textArea);
-        scrollPane.setPreferredSize(new Dimension(ProgramData.frameWidth, ProgramData.frameHeight - ProgramData.maxHeight -50));
+        scrollPane.setPreferredSize(new Dimension(ProgramData.frameWidth, ProgramData.frameHeight - ProgramData.maxHeight - 50));
     }
 }

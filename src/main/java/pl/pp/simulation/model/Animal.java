@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import static pl.pp.simulation.utils.ProgramData.*;
 import static pl.pp.simulation.utils.Utils.getDistance;
 
 public abstract class Animal extends Organism {
@@ -45,7 +44,7 @@ public abstract class Animal extends Organism {
         speed = 0;
         speedAngle = random.nextInt(360);
         desireForParenthood = 0;
-        hunger = minimumHunger*2;
+        hunger = minimumHunger * 2;
     }
 
     public abstract void init();
@@ -132,20 +131,20 @@ public abstract class Animal extends Organism {
     }
 
     public List<Fox> getVisibleFoxes() {
-        return foxList.stream()
+        return Foxes.foxList.stream()
                 .filter(fox -> fox != this && getDistance(this, fox) <= visibility)
                 .collect(Collectors.toList());
     }
 
 
     public List<Hare> getVisibleHares() {
-        return hareList.stream()
+        return Hares.hareList.stream()
                 .filter(hare -> hare != this && getDistance(this, hare) <= visibility)
                 .collect(Collectors.toList());
     }
 
     public List<Grass> getVisibleGrass() {
-        return grassList.stream()
+        return GrassUtils.grassList.stream()
                 .filter(grass -> getDistance(this, grass) <= visibility)
                 .collect(Collectors.toList());
     }
@@ -162,11 +161,10 @@ public abstract class Animal extends Organism {
     }
 
     private double deltaX() {
-        return speed*Math.cos(Math.toRadians(speedAngle));
+        return speed * Math.cos(Math.toRadians(speedAngle));
     }
 
     private double deltaY() {
-        return speed*Math.sin(Math.toRadians(speedAngle));
+        return speed * Math.sin(Math.toRadians(speedAngle));
     }
 }
-

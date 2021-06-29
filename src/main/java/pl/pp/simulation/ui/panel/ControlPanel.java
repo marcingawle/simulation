@@ -11,7 +11,7 @@ import java.awt.*;
 
 import static pl.pp.simulation.ui.charts.SimulationChart.simulationChart;
 
-public class ControlPanel extends JPanel{
+public class ControlPanel extends JPanel {
     public static ParameterModel grassParameter;
     public static ParameterModel hareParameter;
     public static ParameterModel foxParameter;
@@ -29,26 +29,36 @@ public class ControlPanel extends JPanel{
 
         setPreferredSize(new Dimension(ProgramData.frameWidth - ProgramData.maxWidth - 50, ProgramData.frameHeight));
 
-        ControlPanel.timeLabel = new JLabel("Czas: 0");
+        timeLabel = new JLabel("Czas: 0");
 
-        ControlPanel.grassParameter = new ParameterModel("Trawa", 50);
-        ControlPanel.hareParameter = new ParameterModel("Zające", 20);
-        ControlPanel.foxParameter = new ParameterModel("Lisy", 12);
+        grassParameter = new ParameterModel("Trawa", 50);
+        hareParameter = new ParameterModel("Zające", 20);
+        foxParameter = new ParameterModel("Lisy", 12);
 
         JButton chartButton = new JButton("Wykres");
 
-        chartButton.addActionListener(e -> {
-            simulationChart.setVisible(true);
-        });
+        chartButton.addActionListener(e -> simulationChart.setVisible(true));
 
-        add(ControlPanel.timeLabel);
-        add(ControlPanel.grassParameter.getPanel());
-        add(ControlPanel.hareParameter.getPanel());
-        add(ControlPanel.foxParameter.getPanel());
+        add(timeLabel);
+        add(grassParameter.getPanel());
+        add(hareParameter.getPanel());
+        add(foxParameter.getPanel());
         add(StartButton.getInstance());
         add(StopButton.getInstance());
         add(ResetButton.getInstance());
         add(chartButton);
+    }
+
+    public static void setEditableParameters() {
+        grassParameter.setEditable(true);
+        hareParameter.setEditable(true);
+        foxParameter.setEditable(true);
+    }
+
+    public static void setNotEditableParameters() {
+        grassParameter.setEditable(false);
+        hareParameter.setEditable(false);
+        foxParameter.setEditable(false);
     }
 
 
