@@ -16,6 +16,7 @@ public class SimulationChart extends JFrame {
     private XYSeries foxSeries;
 
     public SimulationChart() {
+        System.out.println("konstrukrot - SimulationChart");
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         setTitle("Wykres");
 

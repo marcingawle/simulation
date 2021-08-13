@@ -1,6 +1,8 @@
 package pl.pp.simulation.ui.buttons;
 
-import pl.pp.simulation.model.Organisms;
+import pl.pp.simulation.model.Foxes;
+import pl.pp.simulation.model.GrassUtils;
+import pl.pp.simulation.model.Hares;
 import pl.pp.simulation.ui.panel.ControlPanel;
 
 import javax.swing.*;
@@ -30,7 +32,7 @@ public class ResetButton extends JButton {
 
             timer.stop();
 
-            Organisms.clear();
+            clear();
 
             StopButton.getInstance().setEnabled(false);
             StartButton.getInstance().setEnabled(true);
@@ -41,5 +43,11 @@ public class ResetButton extends JButton {
             ControlPanel.timeLabel.setText("Czas: 0");
 
         });
+    }
+
+    public void clear() {
+        GrassUtils.grassList.clear();
+        Hares.hareList.clear();
+        Foxes.foxList.clear();
     }
 }
