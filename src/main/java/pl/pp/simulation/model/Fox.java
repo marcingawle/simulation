@@ -7,8 +7,6 @@ import java.awt.geom.Ellipse2D;
 import java.util.Collections;
 import java.util.Comparator;
 
-import static pl.pp.simulation.model.Foxes.deathFoxList;
-import static pl.pp.simulation.model.Hares.hareList;
 import static pl.pp.simulation.ui.panel.ScrollPanel.textArea;
 import static pl.pp.simulation.utils.Utils.getDistance;
 import static pl.pp.simulation.utils.Utils.multipleFoxes;
@@ -29,7 +27,7 @@ public class Fox extends Animal {
         super.move();
 
         if (hunger > deathlyHunger) {
-            deathFoxList.add(this);
+            foxesService.getDeathFoxList().add(this);
         }
     }
 
@@ -78,7 +76,7 @@ public class Fox extends Animal {
     }
 
     private void eatHare(Hare hare) {
-        hareList.remove(hare);
+        haresService.getHareList().remove(hare);
         textArea.append("\n Jedzenie zająca");
         hunger -= reducingHungerByHare;
     }

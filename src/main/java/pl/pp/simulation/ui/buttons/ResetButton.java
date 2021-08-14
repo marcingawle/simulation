@@ -1,10 +1,9 @@
 package pl.pp.simulation.ui.buttons;
 
 import pl.pp.simulation.Step;
-import pl.pp.simulation.model.Foxes;
-import pl.pp.simulation.model.GrassUtils;
-import pl.pp.simulation.model.Hares;
-import pl.pp.simulation.ui.MyFrame;
+import pl.pp.simulation.model.FoxesService;
+import pl.pp.simulation.model.GrassService;
+import pl.pp.simulation.model.HaresService;
 import pl.pp.simulation.ui.panel.ControlPanel;
 
 import javax.annotation.PostConstruct;
@@ -19,6 +18,10 @@ public class ResetButton extends JButton {
     private StartButton startButton;
     private StopButton stopButton;
     private Step timer;
+
+    private GrassService grassService;
+    private HaresService haresService;
+    private FoxesService foxesService;
 
     public ResetButton(String text) {
         super(text);
@@ -53,9 +56,9 @@ public class ResetButton extends JButton {
     }
 
     public void clear() {
-        GrassUtils.grassList.clear();
-        Hares.hareList.clear();
-        Foxes.foxList.clear();
+        grassService.getGrassList().clear();
+        haresService.getHareList().clear();
+        foxesService.getFoxList().clear();
     }
 
     public void setStartButton(StartButton startButton) {
@@ -68,5 +71,17 @@ public class ResetButton extends JButton {
 
     public void setTimer(Step timer) {
         this.timer = timer;
+    }
+
+    public void setGrassService(GrassService grassService) {
+        this.grassService = grassService;
+    }
+
+    public void setHaresService(HaresService haresService) {
+        this.haresService = haresService;
+    }
+
+    public void setFoxesService(FoxesService foxesService) {
+        this.foxesService = foxesService;
     }
 }

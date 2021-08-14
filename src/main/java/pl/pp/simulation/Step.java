@@ -1,11 +1,12 @@
 package pl.pp.simulation;
 
-import pl.pp.simulation.model.Foxes;
-import pl.pp.simulation.model.GrassUtils;
-import pl.pp.simulation.model.Hares;
+import pl.pp.simulation.model.FoxesService;
+import pl.pp.simulation.model.GrassService;
+import pl.pp.simulation.model.HaresService;
 import pl.pp.simulation.ui.SimulationComponent;
 import pl.pp.simulation.ui.panel.ControlPanel;
 
+import javax.annotation.PostConstruct;
 import javax.swing.*;
 
 import static pl.pp.simulation.utils.ProgramData.steps;
@@ -14,15 +15,25 @@ public class Step {
 
     private Timer timer;
 
-    public Step(SimulationComponent simulationComponent) {
+    private GrassService grassService;
+    private HaresService haresService;
+    private FoxesService foxesService;
+
+    private SimulationComponent simulationComponent;
+
+    public Step() {
         System.out.println("Konstruktor - Step");
+    }
+
+    @PostConstruct
+    private void init() {
         timer = new Timer(40, e -> {
             steps++;
             ControlPanel.timeLabel.setText("Czas: " + steps);
 
-            GrassUtils.grow();
-            Hares.move();
-            Foxes.move();
+            grassService.grow();
+            haresService.move();
+            foxesService.move();
 
             updateAmount();
 
@@ -39,8 +50,24 @@ public class Step {
     }
 
     public void updateAmount() {
-        GrassUtils.updateAmount();
-        Hares.updateAmount();
-        Foxes.updateAmount();
+        grassService.updateAmount();
+        haresService.updateAmount();
+        foxesService.updateAmount();
+    }
+
+    public void setGrassService(GrassService grassService) {
+        this.grassService = grassService;
+    }
+
+    public void setSimulationComponent(SimulationComponent simulationComponent) {
+        this.simulationComponent = simulationComponent;
+    }
+
+    public void setHaresService(HaresService haresService) {
+        this.haresService = haresService;
+    }
+
+    public void setFoxesService(FoxesService foxesService) {
+        this.foxesService = foxesService;
     }
 }

@@ -3,6 +3,9 @@ package pl.pp.simulation.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pl.pp.simulation.Step;
+import pl.pp.simulation.model.FoxesService;
+import pl.pp.simulation.model.GrassService;
+import pl.pp.simulation.model.HaresService;
 import pl.pp.simulation.ui.MyFrame;
 import pl.pp.simulation.ui.SimulationComponent;
 import pl.pp.simulation.ui.buttons.ResetButton;
@@ -19,6 +22,9 @@ public class SimulationConfig {
         StartButton startButton = new StartButton("Start");
         startButton.setStopButton(stopButton());
         startButton.setTimer(timer());
+        startButton.setGrassService(grassService());
+        startButton.setHaresService(haresService());
+        startButton.setFoxesService(foxesService());
         return startButton;
     }
 
@@ -35,12 +41,35 @@ public class SimulationConfig {
         resetButton.setStartButton(startButton());
         resetButton.setStopButton(stopButton());
         resetButton.setTimer(timer());
+        resetButton.setGrassService(grassService());
+        resetButton.setHaresService(haresService());
+        resetButton.setFoxesService(foxesService());
         return resetButton;
     }
 
     @Bean
+    public GrassService grassService() {
+        return new GrassService();
+    }
+
+    @Bean
+    public HaresService haresService() {
+        return new HaresService();
+    }
+
+    @Bean
+    public FoxesService foxesService() {
+        return new FoxesService();
+    }
+
+    @Bean
     public Step timer() {
-        return new Step(simulationComponent());
+        Step step = new Step();
+        step.setSimulationComponent(simulationComponent());
+        step.setGrassService(grassService());
+        step.setHaresService(haresService());
+        step.setFoxesService(foxesService());
+        return step;
     }
 
     @Bean
@@ -59,7 +88,11 @@ public class SimulationConfig {
 
     @Bean
     public SimulationComponent simulationComponent() {
-        return new SimulationComponent();
+        SimulationComponent simulationComponent = new SimulationComponent();
+        simulationComponent.setGrassService(grassService());
+        simulationComponent.setHaresService(haresService());
+        simulationComponent.setFoxesService(foxesService());
+        return simulationComponent;
     }
 
     @Bean
