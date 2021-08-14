@@ -7,6 +7,7 @@ import pl.pp.simulation.model.Hares;
 import pl.pp.simulation.ui.MyFrame;
 import pl.pp.simulation.ui.panel.ControlPanel;
 
+import javax.annotation.PostConstruct;
 import javax.swing.*;
 
 import static pl.pp.simulation.ui.charts.SimulationChart.simulationChart;
@@ -15,9 +16,18 @@ import static pl.pp.simulation.utils.ProgramData.*;
 
 public class ResetButton extends JButton {
 
-    public ResetButton(StartButton startButton, StopButton stopButton, Step timer, String text) {
+    private StartButton startButton;
+    private StopButton stopButton;
+    private Step timer;
+
+    public ResetButton(String text) {
         super(text);
         System.out.println("Konstruktor - ResetButton");
+
+    }
+
+    @PostConstruct
+    private void init() {
 
         addActionListener(e -> {
             running = false;
@@ -46,5 +56,17 @@ public class ResetButton extends JButton {
         GrassUtils.grassList.clear();
         Hares.hareList.clear();
         Foxes.foxList.clear();
+    }
+
+    public void setStartButton(StartButton startButton) {
+        this.startButton = startButton;
+    }
+
+    public void setStopButton(StopButton stopButton) {
+        this.stopButton = stopButton;
+    }
+
+    public void setTimer(Step timer) {
+        this.timer = timer;
     }
 }

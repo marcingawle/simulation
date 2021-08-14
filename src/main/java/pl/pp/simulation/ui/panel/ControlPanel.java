@@ -6,20 +6,29 @@ import pl.pp.simulation.ui.buttons.StopButton;
 import pl.pp.simulation.utils.ParameterModel;
 import pl.pp.simulation.utils.ProgramData;
 
+import javax.annotation.PostConstruct;
 import javax.swing.*;
 import java.awt.*;
 
 import static pl.pp.simulation.ui.charts.SimulationChart.simulationChart;
 
 public class ControlPanel extends JPanel {
-    public static ParameterModel grassParameter = new ParameterModel("Trawa", 50);;
-    public static ParameterModel hareParameter = new ParameterModel("Zające", 20);;
-    public static ParameterModel foxParameter =  new ParameterModel("Lisy", 12);;
+    public static ParameterModel grassParameter = new ParameterModel("Trawa", 50);
+    public static ParameterModel hareParameter = new ParameterModel("Zające", 20);
+    public static ParameterModel foxParameter =  new ParameterModel("Lisy", 12);
 
     public static JLabel timeLabel;
 
-    public ControlPanel(ResetButton resetButton, StartButton startButton, StopButton stopButton) {
+    private ResetButton resetButton;
+    private StartButton startButton;
+    private StopButton stopButton;
+
+    public ControlPanel() {
         System.out.println("konstrukrot - ControlPanel");
+    }
+
+    @PostConstruct
+    private void init() {
         setLayout(new GridLayout(8, 1, 50, 50));
 
         setPreferredSize(new Dimension(ProgramData.frameWidth - ProgramData.maxWidth - 50, ProgramData.frameHeight));
@@ -53,4 +62,15 @@ public class ControlPanel extends JPanel {
     }
 
 
+    public void setResetButton(ResetButton resetButton) {
+        this.resetButton = resetButton;
+    }
+
+    public void setStartButton(StartButton startButton) {
+        this.startButton = startButton;
+    }
+
+    public void setStopButton(StopButton stopButton) {
+        this.stopButton = stopButton;
+    }
 }

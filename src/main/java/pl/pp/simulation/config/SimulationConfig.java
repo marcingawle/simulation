@@ -16,17 +16,26 @@ public class SimulationConfig {
 
     @Bean
     public StartButton startButton() {
-        return new StartButton(stopButton(), timer(), "Start");
+        StartButton startButton = new StartButton("Start");
+        startButton.setStopButton(stopButton());
+        startButton.setTimer(timer());
+        return startButton;
     }
 
     @Bean
     public StopButton stopButton() {
-        return new StopButton( timer(), "Stop");
+        StopButton stopButton = new StopButton("Stop");
+        stopButton.setTimer(timer());
+        return stopButton;
     }
 
     @Bean
     public ResetButton resetButton() {
-        return new ResetButton(startButton(), stopButton(), timer(),"Reset");
+        ResetButton resetButton = new ResetButton("Reset");
+        resetButton.setStartButton(startButton());
+        resetButton.setStopButton(stopButton());
+        resetButton.setTimer(timer());
+        return resetButton;
     }
 
     @Bean
@@ -36,7 +45,11 @@ public class SimulationConfig {
 
     @Bean
     public ControlPanel controlPanel() {
-        return new ControlPanel(resetButton(), startButton(), stopButton());
+        ControlPanel controlPanel = new ControlPanel();
+        controlPanel.setResetButton(resetButton());
+        controlPanel.setStartButton(startButton());
+        controlPanel.setStopButton(stopButton());
+        return controlPanel;
     }
 
     @Bean
@@ -51,6 +64,10 @@ public class SimulationConfig {
 
     @Bean
     public MyFrame myFrame() {
-        return new MyFrame(controlPanel(), scrollPanel(), simulationComponent());
+        MyFrame myFrame = new MyFrame();
+        myFrame.setControlPanel(controlPanel());
+        myFrame.setScrollPanel(scrollPanel());
+        myFrame.setSimulationComponent(simulationComponent());
+        return myFrame;
     }
 }
