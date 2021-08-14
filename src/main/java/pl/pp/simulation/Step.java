@@ -10,10 +10,13 @@ import javax.swing.*;
 
 import static pl.pp.simulation.utils.ProgramData.steps;
 
-public class Step extends Timer {
+public class Step {
+
+    private Timer timer;
 
     public Step(SimulationComponent simulationComponent) {
-        super(40, e -> {
+        System.out.println("Konstruktor - Step");
+        timer = new Timer(40, e -> {
             steps++;
             ControlPanel.timeLabel.setText("Czas: " + steps);
 
@@ -27,7 +30,15 @@ public class Step extends Timer {
         });
     }
 
-    public static void updateAmount() {
+    public void start() {
+        timer.start();
+    }
+
+    public void stop() {
+        timer.stop();
+    }
+
+    public void updateAmount() {
         GrassUtils.updateAmount();
         Hares.updateAmount();
         Foxes.updateAmount();

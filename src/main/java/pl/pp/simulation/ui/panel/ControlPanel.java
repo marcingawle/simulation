@@ -12,23 +12,19 @@ import java.awt.*;
 import static pl.pp.simulation.ui.charts.SimulationChart.simulationChart;
 
 public class ControlPanel extends JPanel {
-    public static ParameterModel grassParameter;
-    public static ParameterModel hareParameter;
-    public static ParameterModel foxParameter;
+    public static ParameterModel grassParameter = new ParameterModel("Trawa", 50);;
+    public static ParameterModel hareParameter = new ParameterModel("Zające", 20);;
+    public static ParameterModel foxParameter =  new ParameterModel("Lisy", 12);;
 
     public static JLabel timeLabel;
 
-    public ControlPanel() {
+    public ControlPanel(ResetButton resetButton, StartButton startButton, StopButton stopButton) {
         System.out.println("konstrukrot - ControlPanel");
         setLayout(new GridLayout(8, 1, 50, 50));
 
         setPreferredSize(new Dimension(ProgramData.frameWidth - ProgramData.maxWidth - 50, ProgramData.frameHeight));
 
         timeLabel = new JLabel("Czas: 0");
-
-        grassParameter = new ParameterModel("Trawa", 50);
-        hareParameter = new ParameterModel("Zające", 20);
-        foxParameter = new ParameterModel("Lisy", 12);
 
         JButton chartButton = new JButton("Wykres");
 
@@ -38,9 +34,9 @@ public class ControlPanel extends JPanel {
         add(grassParameter.getPanel());
         add(hareParameter.getPanel());
         add(foxParameter.getPanel());
-        add(StartButton.getInstance());
-        add(StopButton.getInstance());
-        add(ResetButton.getInstance());
+        add(startButton);
+        add(stopButton);
+        add(resetButton);
         add(chartButton);
     }
 

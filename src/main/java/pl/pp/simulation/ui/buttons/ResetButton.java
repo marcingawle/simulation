@@ -1,8 +1,10 @@
 package pl.pp.simulation.ui.buttons;
 
+import pl.pp.simulation.Step;
 import pl.pp.simulation.model.Foxes;
 import pl.pp.simulation.model.GrassUtils;
 import pl.pp.simulation.model.Hares;
+import pl.pp.simulation.ui.MyFrame;
 import pl.pp.simulation.ui.panel.ControlPanel;
 
 import javax.swing.*;
@@ -13,14 +15,9 @@ import static pl.pp.simulation.utils.ProgramData.*;
 
 public class ResetButton extends JButton {
 
-    private static final ResetButton RESET_BUTTON = new ResetButton("Reset");
-
-    public static ResetButton getInstance() {
-        return RESET_BUTTON;
-    }
-
-    private ResetButton(String text) {
+    public ResetButton(StartButton startButton, StopButton stopButton, Step timer, String text) {
         super(text);
+        System.out.println("Konstruktor - ResetButton");
 
         addActionListener(e -> {
             running = false;
@@ -34,8 +31,8 @@ public class ResetButton extends JButton {
 
             clear();
 
-            StopButton.getInstance().setEnabled(false);
-            StartButton.getInstance().setEnabled(true);
+            stopButton.setEnabled(false);
+            startButton.setEnabled(true);
 
             ControlPanel.setEditableParameters();
 
