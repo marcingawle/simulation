@@ -1,7 +1,10 @@
 package pl.pp.simulation.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import pl.pp.simulation.Step;
 import pl.pp.simulation.model.FoxesService;
 import pl.pp.simulation.model.GrassService;
@@ -17,13 +20,18 @@ import pl.pp.simulation.ui.panel.ScrollPanel;
 import pl.pp.simulation.utils.ParameterModel;
 
 import javax.swing.*;
+import java.util.Objects;
 
 @Configuration
+@PropertySource("simulation.properties")
 public class SimulationConfig {
+
+    @Autowired
+    private Environment environment;
 
     @Bean
     public StartButton startButton() {
-        StartButton startButton = new StartButton("Start");
+        StartButton startButton = new StartButton(environment.getProperty("button.start.text"));
         startButton.setStopButton(stopButton());
         startButton.setTimer(timer());
 
@@ -39,14 +47,14 @@ public class SimulationConfig {
 
     @Bean
     public StopButton stopButton() {
-        StopButton stopButton = new StopButton("Stop");
+        StopButton stopButton = new StopButton(environment.getProperty("button.stop.text"));
         stopButton.setTimer(timer());
         return stopButton;
     }
 
     @Bean
     public ResetButton resetButton() {
-        ResetButton resetButton = new ResetButton("Reset");
+        ResetButton resetButton = new ResetButton(environment.getProperty("button.reset.text"));
         resetButton.setStartButton(startButton());
         resetButton.setStopButton(stopButton());
         resetButton.setTimer(timer());
@@ -89,17 +97,23 @@ public class SimulationConfig {
 
     @Bean
     public ParameterModel grassParameter() {
-        return new ParameterModel("Trawa", 50);
+        String label = environment.getProperty("parameter.grass.label");
+        int defaultValue = Integer.parseInt(Objects.requireNonNull(environment.getProperty("parameter.grass.value")));
+        return new ParameterModel(label, defaultValue);
     }
 
     @Bean
     public ParameterModel hareParameter() {
-        return new ParameterModel("Zające", 20);
+        String label = environment.getProperty("parameter.hare.label");
+        int defaultValue = Integer.parseInt(Objects.requireNonNull(environment.getProperty("parameter.hare.value")));
+        return new ParameterModel(label, defaultValue);
     }
 
     @Bean
     public ParameterModel foxParameter() {
-        return new ParameterModel("Lisy", 12);
+        String label = environment.getProperty("parameter.fox.label");
+        int defaultValue = Integer.parseInt(Objects.requireNonNull(environment.getProperty("parameter.fox.value")));
+        return new ParameterModel(label, defaultValue);
     }
 
     @Bean
@@ -115,7 +129,12 @@ public class SimulationConfig {
 
     @Bean
     public JLabel timeLabel() {
-        return new JLabel("Czas: 0");
+        return new JLabel(environment.getProperty("time.label"));
+    }
+
+    @Bean
+    public JButton chartButton() {
+        return new JButton(environment.getProperty("chart.button.text"));
     }
 
     @Bean
@@ -126,6 +145,7 @@ public class SimulationConfig {
         controlPanel.setStopButton(stopButton());
         controlPanel.setSimulationChart(simulationChart());
         controlPanel.setTimeLabel(timeLabel());
+        controlPanel.setChartButton(chartButton());
 
         controlPanel.setGrassParameter(grassParameter());
         controlPanel.setHareParameter(hareParameter());

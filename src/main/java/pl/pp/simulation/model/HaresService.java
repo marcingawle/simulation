@@ -1,7 +1,6 @@
 package pl.pp.simulation.model;
 
 import pl.pp.simulation.ui.charts.SimulationChart;
-import pl.pp.simulation.ui.panel.ControlPanel;
 import pl.pp.simulation.utils.ParameterModel;
 
 import java.awt.*;

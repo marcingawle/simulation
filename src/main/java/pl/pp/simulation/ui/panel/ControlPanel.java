@@ -23,6 +23,7 @@ public class ControlPanel extends JPanel {
     private StopButton stopButton;
 
     private SimulationChart simulationChart;
+    private JButton chartButton;
 
     public ControlPanel() {
         System.out.println("konstrukrot - ControlPanel");
@@ -33,8 +34,6 @@ public class ControlPanel extends JPanel {
         setLayout(new GridLayout(8, 1, 50, 50));
 
         setPreferredSize(new Dimension(ProgramData.frameWidth - ProgramData.maxWidth - 50, ProgramData.frameHeight));
-
-        JButton chartButton = new JButton("Wykres");
 
         chartButton.addActionListener(e -> simulationChart.setVisible(true));
 
@@ -79,5 +78,9 @@ public class ControlPanel extends JPanel {
 
     public void setFoxParameter(ParameterModel foxParameter) {
         this.foxParameter = foxParameter;
+    }
+
+    public void setChartButton(JButton chartButton) {
+        this.chartButton = chartButton;
     }
 }

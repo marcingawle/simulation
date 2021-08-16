@@ -2,13 +2,13 @@ package pl.pp.simulation.ui.buttons;
 
 import pl.pp.simulation.Step;
 import pl.pp.simulation.model.*;
-import pl.pp.simulation.ui.panel.ControlPanel;
 import pl.pp.simulation.utils.ParameterModel;
 
 import javax.annotation.PostConstruct;
 import javax.swing.*;
 
-import static pl.pp.simulation.utils.ProgramData.*;
+import static pl.pp.simulation.utils.ProgramData.running;
+import static pl.pp.simulation.utils.ProgramData.started;
 
 public class StartButton extends JButton {
 

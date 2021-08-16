@@ -16,7 +16,7 @@ public class Utils {
     public static void multipleHares(Hare hare1, Hare hare2) {
         hare1.clearDesireForParenthood();
         hare2.clearDesireForParenthood();
-        HaresService haresService =  context.getBean("haresService", HaresService.class);
+        HaresService haresService = context.getBean("haresService", HaresService.class);
 
         haresService.getNewHareList().add(new Hare(hare1.getX(), hare1.getY()));
 
@@ -27,7 +27,7 @@ public class Utils {
         fox1.clearDesireForParenthood();
         fox2.clearDesireForParenthood();
 
-        FoxesService foxesService =  context.getBean("foxesService", FoxesService.class);
+        FoxesService foxesService = context.getBean("foxesService", FoxesService.class);
 
         foxesService.getNewFoxList().add(new Fox(fox1.getX(), fox1.getY()));
 

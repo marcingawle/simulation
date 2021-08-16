@@ -41,9 +41,9 @@ public abstract class Animal extends Organism {
         desireForParenthood = minimumDesireForParenthood;
         hunger = 0;
 
-        grassService =  context.getBean("grassService", GrassService.class);
-        haresService =  context.getBean("haresService", HaresService.class);
-        foxesService =  context.getBean("foxesService", FoxesService.class);
+        grassService = context.getBean("grassService", GrassService.class);
+        haresService = context.getBean("haresService", HaresService.class);
+        foxesService = context.getBean("foxesService", FoxesService.class);
     }
 
     public Animal(double x, double y) {
@@ -55,9 +55,9 @@ public abstract class Animal extends Organism {
         desireForParenthood = 0;
         hunger = minimumHunger * 2;
 
-        grassService =  context.getBean("grassService", GrassService.class);
-        haresService =  context.getBean("haresService", HaresService.class);
-        foxesService =  context.getBean("foxesService", FoxesService.class);
+        grassService = context.getBean("grassService", GrassService.class);
+        haresService = context.getBean("haresService", HaresService.class);
+        foxesService = context.getBean("foxesService", FoxesService.class);
     }
 
     public abstract void init();
