@@ -4,12 +4,13 @@ import pl.pp.simulation.Step;
 import pl.pp.simulation.model.FoxesService;
 import pl.pp.simulation.model.GrassService;
 import pl.pp.simulation.model.HaresService;
+import pl.pp.simulation.ui.charts.SimulationChart;
 import pl.pp.simulation.ui.panel.ControlPanel;
+import pl.pp.simulation.utils.ParameterModel;
 
 import javax.annotation.PostConstruct;
 import javax.swing.*;
 
-import static pl.pp.simulation.ui.charts.SimulationChart.simulationChart;
 import static pl.pp.simulation.ui.panel.ScrollPanel.textArea;
 import static pl.pp.simulation.utils.ProgramData.*;
 
@@ -22,6 +23,13 @@ public class ResetButton extends JButton {
     private GrassService grassService;
     private HaresService haresService;
     private FoxesService foxesService;
+
+    private ParameterModel grassParameter;
+    private ParameterModel hareParameter;
+    private ParameterModel foxParameter;
+
+    private SimulationChart simulationChart;
+    private JLabel timeLabel;
 
     public ResetButton(String text) {
         super(text);
@@ -47,10 +55,10 @@ public class ResetButton extends JButton {
             stopButton.setEnabled(false);
             startButton.setEnabled(true);
 
-            ControlPanel.setEditableParameters();
+            setEditableParameters();
 
             steps = 0;
-            ControlPanel.timeLabel.setText("Czas: 0");
+            timeLabel.setText("Czas: 0");
 
         });
     }
@@ -59,6 +67,12 @@ public class ResetButton extends JButton {
         grassService.getGrassList().clear();
         haresService.getHareList().clear();
         foxesService.getFoxList().clear();
+    }
+
+    public void setEditableParameters() {
+        grassParameter.setEditable(true);
+        hareParameter.setEditable(true);
+        foxParameter.setEditable(true);
     }
 
     public void setStartButton(StartButton startButton) {
@@ -83,5 +97,25 @@ public class ResetButton extends JButton {
 
     public void setFoxesService(FoxesService foxesService) {
         this.foxesService = foxesService;
+    }
+
+    public void setSimulationChart(SimulationChart simulationChart) {
+        this.simulationChart = simulationChart;
+    }
+
+    public void setTimeLabel(JLabel timeLabel) {
+        this.timeLabel = timeLabel;
+    }
+
+    public void setGrassParameter(ParameterModel grassParameter) {
+        this.grassParameter = grassParameter;
+    }
+
+    public void setHareParameter(ParameterModel hareParameter) {
+        this.hareParameter = hareParameter;
+    }
+
+    public void setFoxParameter(ParameterModel foxParameter) {
+        this.foxParameter = foxParameter;
     }
 }
